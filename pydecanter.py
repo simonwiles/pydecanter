@@ -46,40 +46,14 @@ from pathlib import Path  # py >= 3.4 only
 from wsgiref.handlers import SimpleHandler
 from wsgiref.simple_server import WSGIServer, make_server
 
-try:
-    # pylint: disable=W0611
-    import bottle
-    import markdown
-    import slimit
-    import rcssmin
-    from mako.lookup import TemplateLookup
-    from bs4 import BeautifulSoup, Comment
-except ImportError:
-    print("====================================================================")
-    print("sudo (-H) pip3 install bottle mako bs4 markdown slimit rcssmin")
-    print("====================================================================")
-    raise
-
-try:
-    from tidylib import tidy_document
-except ImportError:
-    print("=================================")
-    print(
-        "requires W3C fork of tidy -- "
-        "build and install from https://github.com/w3c/tidy-html5 and then "
-        "`sudo pip3 install pytidylib`"
-    )
-    print("=================================")
-    raise
-
-try:
-    from termcolor import colored
-except ImportError:
-
-    def colored(text, color, attrs=None):
-        return text
-
-
+import bottle
+import markdown
+import slimit
+import rcssmin
+from mako.lookup import TemplateLookup
+from bs4 import BeautifulSoup, Comment
+from tidylib import tidy_document
+from termcolor import colored
 from socketserver import ThreadingMixIn
 
 from sw_monitor import Monitor
