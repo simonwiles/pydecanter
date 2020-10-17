@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pycodestyle = "*"
+black = "==20.8b1"
 
 [packages]
 mako = "*"
