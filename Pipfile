@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+mako = "*"
+bs4 = "*"
 
 [requires]
 python_version = "3.8"
