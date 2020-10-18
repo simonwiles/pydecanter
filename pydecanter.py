@@ -23,7 +23,7 @@ from tidylib import tidy_document
 from termcolor import colored
 from socketserver import ThreadingMixIn
 
-from sw_monitor import Monitor
+from lib.monitor import Monitor
 
 from lib.utils import add_cache_tag, get_file_hash
 
