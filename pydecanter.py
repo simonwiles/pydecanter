@@ -1,38 +1,5 @@
 #!/usr/bin/env python3
 
-"""
-
-NOTES:
-* needs the W3C fork of tidy (https://github.com/w3c/tidy-html5):
-   download, complile and install from Github, and use
-   `sudo pip install pytidylib` -- don't use the lib or the bindings from
-   distro-repos.
-
-TODO:
-
-PRIORITY
-* add filehashes to filenames for assets called from js (currently for html
-   and css only)
-
-EXTENSIONS
-* consider debug_toolbar style overlay with debug information, tidy errors etc.
-* consider removing dependency on bs4 by doing the work with HTMLParser?
-   (difficult, I think...)
-
-NOTES:
-* ply > 3.4 causes slimit to output lots of warnings when minifying JS
-  * solution: (sudo -H) pip3 uninstall ply
-              (sudo -H) pip3 install ply==3.4
-
-"""
-
-__program_name__ = "pydecanter.py"
-__author__ = "Simon Wiles"
-__email__ = "simonjwiles@gmail.com"
-__copyright__ = "Copyright 2013-5, Simon Wiles"
-__license__ = "GPL http://www.gnu.org/licenses/gpl.txt"
-__version__ = "3"
-
 import atexit
 import argparse
 import errno
@@ -42,7 +9,7 @@ import re
 import shutil
 import sys
 from configparser import ConfigParser
-from pathlib import Path  # py >= 3.4 only
+from pathlib import Path
 from wsgiref.handlers import SimpleHandler
 from wsgiref.simple_server import WSGIServer, make_server
 
@@ -80,12 +47,10 @@ FORCE_MIMETYPES = ((".vtt", "text/vtt"),)
 
 
 TIDY_OPTIONS = {
-    "doctype": "html5",  # only works with the W3C fork of tidy
-    #                       (https://github.com/w3c/tidy-html5)
+    "doctype": "html5",
     # 'hide-comments': True,  # no good; strips IE conditional comments too :(
     "tidy-mark": False,
     "indent": True,
-    #'sort-attributes': 'alpha',
     "vertical-space": False,
     "output-xhtml": False,
     "wrap": 0,
@@ -97,7 +62,6 @@ TIDY_OPTIONS = {
 }
 
 
-# pylint: disable=R0903
 class ThreadingWSGIServer(ThreadingMixIn, WSGIServer):
     pass
 
