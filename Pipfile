@@ -4,19 +4,19 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pycodestyle = "*"
 black = "==20.8b1"
+pycodestyle = "*"
 
 [packages]
-mako = "*"
-bs4 = "*"
 bottle = "*"
-markdown = "*"
-slimit = "*"
-rcssmin = "*"
-pytidylib = "*"
-termcolor = "*"
+bs4 = "*"
 lxml = "*"
+mako = "*"
+markdown = "*"
+pytidylib = "*"
+rcssmin = "*"
+slimit = "*"
+termcolor = "*"
 
 [requires]
 python_version = "3.8"
