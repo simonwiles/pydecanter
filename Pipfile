@@ -16,6 +16,7 @@ slimit = "*"
 rcssmin = "*"
 pytidylib = "*"
 termcolor = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.8"
