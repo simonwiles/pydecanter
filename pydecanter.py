@@ -68,8 +68,10 @@ class ThreadingWSGIServer(ThreadingMixIn, WSGIServer):
 
 class PyDecanter(object):
 
-    RE_CACHEBUSTABLE = re.compile(r"(.*)\.(jpe?g|gif|png|svg|ttf)")
-    RE_CACHEBUSTER = re.compile(r"(.*)\.[0-9a-f]{12}\.(jpe?g|gif|png|svg|ttf)")
+    RE_CACHEBUSTABLE = re.compile(r"(.*)\.(jpe?g|gif|png|svg|ttf|woff|woff2)")
+    RE_CACHEBUSTER = re.compile(
+        r"(.*)\.[0-9a-f]{12}\.(jpe?g|gif|png|svg|ttf|woff|woff2)"
+    )
     CACHE_TAG_EXCS = (
         "favicon",
         "apple-touch-icon",
