@@ -87,10 +87,18 @@ def add_cache_tag(url, base_url, base_root, referrer=""):
         file_hash = get_file_hash(filename, 12)
 
     if file_hash is None:
+        # Couldn't extract an accessible filepath --
+        #   abort, and return the original URL unmodified
         return url
 
     # FIXME: why was I only modifying the url if it begins with '/'??
+    # perhaps it was to prevent urls beginning with http(s) etc. from
+    #  being parsed?  The above should take care of that, of course,
+    #  and this would be better dealt with before this function is
+    #  called, in any event
     # if url.startswith('/'):
+
+    # TODO: do this with `from urllib.parse import urlparse`
     querystring = None
     fragment = None
     if "#" in url:
