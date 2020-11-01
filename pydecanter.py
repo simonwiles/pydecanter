@@ -124,7 +124,7 @@ class PyDecanter(object):
 
         self.context = {
             "base_url": self.base_url.rstrip("/"),
-            "base_root": self.base_root,
+            "base_root": Path(self.base_root),
             "assets_dir": self.assets_dir,
             "output_root": self.base_root,
             "compress": False,
