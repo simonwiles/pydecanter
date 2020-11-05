@@ -38,8 +38,8 @@ class CssAbsoluteFilter(object):
             self.src_converter, self.RE_URL.sub(self.url_converter, content)
         )
 
-    def _converter(self, matchobj, group, template):
-        url = matchobj.group(group)
+    def _converter(self, match_obj, group, template):
+        url = match_obj.group(group)
         url = url.strip(" '\"")
         if url.startswith("#"):
             return "url('{0}')".format(url)
@@ -52,11 +52,11 @@ class CssAbsoluteFilter(object):
         full_url = normpath("/".join([str(self.directory_name), url]))
         return template.format(add_cache_tag(full_url, self.base_url, self.base_root))
 
-    def url_converter(self, matchobj):
-        return self._converter(matchobj, 1, "url('{0}')")
+    def url_converter(self, match_obj):
+        return self._converter(match_obj, 1, "url('{0}')")
 
-    def src_converter(self, matchobj):
-        return self._converter(matchobj, 2, "src='{0}'")
+    def src_converter(self, match_obj):
+        return self._converter(match_obj, 2, "src='{0}'")
 
 
 def compress_css(css_block, context):
@@ -99,7 +99,7 @@ def compress_css(css_block, context):
     #  stylesheet will probably be using relative urls).
     css_abs_filter = CssAbsoluteFilter(base_root, base_url)
     output_elems = []
-    for mtype, node in media_nodes:
+    for media_type, node in media_nodes:
         content = []
         for hunk_type, value, basename, elem in node:
             if hunk_type == "file":
@@ -119,7 +119,7 @@ def compress_css(css_block, context):
                 file_handle.write(content)
 
         url = re.sub(r"//", "/", outputpath.replace(output_root, base_url))
-        output_elems.append((url, mtype))
+        output_elems.append((url, media_type))
 
     return "\n".join(
         [
